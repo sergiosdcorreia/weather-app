@@ -8,7 +8,10 @@
         borderless
       >
         <template v-slot:before>
-          <q-icon name="my_location" />
+          <q-icon
+            @click="getLocation"
+            name="my_location"
+          />
         </template>
 
         <template v-slot:append>
@@ -16,6 +19,40 @@
         </template>
       </q-input>
     </div>
+    <template v-if="weatherData">
+      <div class="col text-white text-center">
+        <div class="text-h4 text-weight-light">
+          Manchester
+        </div>
+        <div class="text-h6 text-weight-light">
+          Rain
+        </div>
+        <div class="text-h1 text-weight-thin q-my-lg relative-position">
+          <span>8</span>
+          <span class="text-h4 relative-position degree">&deg;</span>
+        </div>
+      </div>
+      <div class="col text-center">
+        <img src="https://www.fillmurray.com/100/100" alt="Bill">
+      </div>
+    </template>
+    <template>
+      <div class="col column text-center text-white">
+        <div class="col text-h2 text-weight-thin">
+          Quasar<br>Weather
+        </div>
+        <q-btn
+          @click="getLocation"
+          class="col"
+          flat
+        >
+          <q-icon left size="3em"
+            name="my_location" />
+          <div>Find my location</div>
+        </q-btn>
+      </div>
+    </template>
+    <div class="col skyline"></div>
   </q-page>
 </template>
 
@@ -24,7 +61,18 @@ export default {
   name: 'PageIndex',
   data() {
     return {
-      search: ''
+      search: '',
+      weatherData: null,
+      lat: null,
+      lon: null
+    }
+  },
+  methods: {
+    getLocation() {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude
+        this.lon = position.coords.longitude
+      })
     }
   }
 }
@@ -33,4 +81,11 @@ export default {
 <style lang="sass">
   .q-page
     background: linear-gradient(to bottom, #136a8a, #267871)
+  .degree
+    top: -44px
+  .skyline
+    flex: 0 0 100px
+    background: url(/skyline.png)
+    background-size: contain
+    background-position: center bottom
 </style>
