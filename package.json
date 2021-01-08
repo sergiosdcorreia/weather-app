@@ -6,7 +6,8 @@
   "author": "Sergio Correia <sergiosdcorreia@gmail.com>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "icons": "icongenie generate -i app-icon.png --theme-color 136a8a --skip-trim"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
