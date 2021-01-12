@@ -64,6 +64,10 @@
 </template>
 
 <script>
+import { Plugins } from '@capacitor/core'
+
+const { Geolocation } = Plugins
+
 export default {
   name: 'PageIndex',
   data() {
@@ -98,7 +102,7 @@ export default {
           this.getWeatherByCoords()
         })
       } else {
-        navigator.geolocation.getCurrentPosition(position => {
+        Geolocation.getCurrentPosition().then(position => {
           this.lat = position.coords.latitude
           this.lon = position.coords.longitude
           this.getWeatherByCoords()

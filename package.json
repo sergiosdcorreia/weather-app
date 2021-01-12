@@ -10,8 +10,9 @@
     "icons": "icongenie generate -i app-icon.png --theme-color 136a8a --skip-trim"
   },
   "dependencies": {
+    "@capacitor/core": "^2.4.5",
     "@quasar/extras": "^1.0.0",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0"
   },
