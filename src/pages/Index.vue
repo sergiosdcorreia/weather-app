@@ -26,6 +26,11 @@
         </template>
       </q-input>
     </div>
+    <template>
+      <div class="text-white text-center q-mb-lg">
+        {{ date }}
+      </div>
+    </template>
     <template v-if="weatherData">
       <div class="col text-white text-center">
         <div class="text-h4 text-weight-light">
@@ -65,6 +70,7 @@
 
 <script>
 import { Plugins } from '@capacitor/core'
+import { format } from 'date-fns'
 
 const { Geolocation } = Plugins
 
@@ -72,6 +78,7 @@ export default {
   name: 'PageIndex',
   data() {
     return {
+      date: '',
       search: '',
       weatherData: null,
       lat: null,
@@ -92,6 +99,11 @@ export default {
     }
   },
   methods: {
+    getDate() {
+      this.date = format(new Date(), 'MMMM d, H:mm:ss')
+      console.log(this.date)
+      setTimeout(this.getDate, 1000)
+    },
     getLocation() {
       this.$q.loading.show()
 
@@ -123,6 +135,9 @@ export default {
         this.$q.loading.hide()
       })
     }
+  },
+  mounted() {
+    this.getDate()
   }
 }
 </script>
