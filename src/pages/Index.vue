@@ -40,7 +40,7 @@
           {{ weatherData.weather[0].main }}
         </div>
         <div class="text-h8 text-weight-light q-mt-md">
-          {{ weatherData.wind.speed }} km/h
+          {{ Math.round(weatherData.wind.speed) }} m/s
         </div>
         <div class="text-h1 text-weight-thin q-my-lg relative-position">
           <span>{{ Math.round(weatherData.main.temp) }}</span>
