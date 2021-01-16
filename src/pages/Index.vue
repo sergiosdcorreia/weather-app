@@ -37,7 +37,10 @@
           {{ weatherData.name }}
         </div>
         <div class="text-h6 text-weight-light">
-          {{ weatherData.weather[0].main}}
+          {{ weatherData.weather[0].main }}
+        </div>
+        <div class="text-h8 text-weight-light q-mt-md">
+          {{ weatherData.wind.speed }} km/h
         </div>
         <div class="text-h1 text-weight-thin q-my-lg relative-position">
           <span>{{ Math.round(weatherData.main.temp) }}</span>
@@ -101,7 +104,6 @@ export default {
   methods: {
     getDate() {
       this.date = format(new Date(), 'MMMM d, H:mm:ss')
-      console.log(this.date)
       setTimeout(this.getDate, 1000)
     },
     getLocation() {
@@ -110,7 +112,7 @@ export default {
       if (this.$q.platform.is.electron) {
         this.$axios.get('https://freegeoip.app/json/').then(response => {
           this.lat = response.data.latitude
-          this.lon = response.data.longitude 
+          this.lon = response.data.longitude
           this.getWeatherByCoords()
         })
       } else {
